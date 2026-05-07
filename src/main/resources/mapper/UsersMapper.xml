@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.swallow.mapper.UsersMapper">
+
+    <resultMap id="BaseResultMap" type="org.swallow.entity.Users">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="openid" column="openid" jdbcType="VARCHAR"/>
+            <result property="pushToken" column="push_token" jdbcType="VARCHAR"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,openid,push_token,
+        update_time,create_time
+    </sql>
+</mapper>

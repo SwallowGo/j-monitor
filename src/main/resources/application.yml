@@ -1,0 +1,35 @@
+spring:
+  sql:
+    init:
+      # 模式设置为 always，每次启动都会执行脚本
+      mode: always
+      # 指定脚本位置，默认其实就是 schema.sql
+      schema-locations: classpath:sql/schema.sql
+      # 开启后，如果表已存在且脚本中有 IF NOT EXISTS，则不会报错
+      continue-on-error: true
+  autoconfigure:
+    exclude: []
+  application:
+    name: price_monitor
+  r2dbc:
+    url: r2dbc:mysql://${MYSQL_HOST}:3306/price_monitor?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+    username: ${MYSQL_USER}
+    password: ${MYSQL_PASSWORD}
+    pool:
+      enabled: true
+
+# MyBatis Plus 的配置
+mybatis-plus:
+  # mybatis 配置文件的路径
+  # config-location: "classpath:mybatis/mybatis.config"
+  # mapper 映射文件的路径，可以有多个
+  mapper-locations: classpath*:/mapper/*.xml  # 如果你有 XML 的话
+  type-aliases-package: org.swallow.entity      # 你的实体类包名
+  configuration:
+      map-underscore-to-camel-case: true
+
+wechat:
+  token: 6mbd7QUcPtrC9xcxkvGfxrKEu8KHBJY4
+push-plus:
+  url: http://www.pushplus.plus
+  token: ${PUSHPLUS_TOKEN}
